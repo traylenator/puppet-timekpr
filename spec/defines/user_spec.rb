@@ -21,8 +21,8 @@ describe 'timekpr::user' do
         context 'with a day set' do
           let(:params) do
             {
-              defaults: {},
-              days: {
+              default_hours: {},
+              day_hours: {
                 monday:  { '3': [0, 45] },
                 tuesday: {
                   '3': [0, 41],
@@ -43,7 +43,7 @@ describe 'timekpr::user' do
         context 'with a default set' do
           let(:params) do
             {
-              defaults: {
+              default_hours: {
                 '3': [0, 45],
                 '6': [0, 41],
               },
@@ -61,11 +61,11 @@ describe 'timekpr::user' do
         context 'with a default and day values set' do
           let(:params) do
             {
-              defaults: {
+              default_hours: {
                 '3': [0, 45],
                 '6': [0, 41],
               },
-              days: {
+              day_hours: {
                 monday:  { '6': [0, 41] },
                 tuesday: {
                   '3': [0, 51],

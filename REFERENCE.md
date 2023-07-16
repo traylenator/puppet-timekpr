@@ -54,7 +54,7 @@ Default value: `'timekpr-next'`
 
 ```puppet
 timekpr::user{'eric':
-  defaults = {
+  default_hours = {
    '9'  => [30,59],
    '10' => [0,59]
    '13' => [0,59]
@@ -63,7 +63,7 @@ timekpr::user{'eric':
    '17' => [0,59]
    '18' => [0,30]
  },
- days => {
+ day_hours => {
    'friday' => {  # no school tomorrow
      '18' => [0,59]
      '19' => [0,30],
@@ -78,6 +78,8 @@ The following parameters are available in the `timekpr::user` defined type:
 * [`user`](#-timekpr--user--user)
 * [`defaults`](#-timekpr--user--defaults)
 * [`days`](#-timekpr--user--days)
+* [`default_hours`](#-timekpr--user--default_hours)
+* [`day_hours`](#-timekpr--user--day_hours)
 
 ##### <a name="-timekpr--user--user"></a>`user`
 
@@ -89,9 +91,17 @@ Default value: `$title`
 
 ##### <a name="-timekpr--user--defaults"></a>`defaults`
 
+Hours and minutes that access is permitted
+
+##### <a name="-timekpr--user--days"></a>`days`
+
+Hours and minutes per day to be merged with the default
+
+##### <a name="-timekpr--user--default_hours"></a>`default_hours`
+
 Data type: `Hash`
 
-Hours and minutes that access is permitted
+
 
 Default value:
 
@@ -122,11 +132,11 @@ Default value:
   }
 ```
 
-##### <a name="-timekpr--user--days"></a>`days`
+##### <a name="-timekpr--user--day_hours"></a>`day_hours`
 
 Data type: `Hash[Enum['monday','tuesday','wednesday','thursday','friday','saturday','sunday'],Hash,0,6]`
 
-Hours and minutes per day to be merged with the default
+
 
 Default value: `{}`
 

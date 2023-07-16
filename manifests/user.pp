@@ -6,7 +6,7 @@
 #
 # @example Manage a user with some limts
 #   timekpr::user{'eric':
-#     defaults = {
+#     default_hours = {
 #      '9'  => [30,59],
 #      '10' => [0,59]
 #      '13' => [0,59]
@@ -15,7 +15,7 @@
 #      '17' => [0,59]
 #      '18' => [0,30]
 #    },
-#    days => {
+#    day_hours => {
 #      'friday' => {  # no school tomorrow
 #        '18' => [0,59]
 #        '19' => [0,30],
@@ -25,7 +25,7 @@
 #
 define timekpr::user (
   String[1] $user = $title,
-  Hash $defaults = {
+  Hash $default_hours = {
     "0" => [0,59],
     "1" => [0,59],
     "2" => [0,59],
@@ -49,15 +49,15 @@ define timekpr::user (
     "21" => [0,59],
     "23" => [0,59],
   },
-  Hash[Enum['monday','tuesday','wednesday','thursday','friday','saturday','sunday'],Hash,0,6] $days = {}
+  Hash[Enum['monday','tuesday','wednesday','thursday','friday','saturday','sunday'],Hash,0,6] $day_hours = {}
 ) {
   include timekpr
 
   $_days = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'].map | $_day | {
-    if $_day in $days {
-      $_result = { $_day => Hash($defaults + $days[$_day]) }
+    if $_day in $day_hours {
+      $_result = { $_day => Hash($default_hours + $day_hours[$_day]) }
     } else {
-      $_result = { $_day => $defaults }
+      $_result = { $_day => $default_hours }
     }
     $_result
   }.reduce | $_memo, $_kv | { $_memo + $_kv }
