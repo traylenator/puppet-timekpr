@@ -13,7 +13,7 @@ describe 'timekpr::user' do
         it { is_expected.to contain_class('timekpr') }
 
         it {
-          is_expected.to contain_file('/var/lib/timekpr/conf/timekpr.steve.conf').
+          is_expected.to contain_file('/var/lib/timekpr/config/timekpr.steve.conf').
             with_content(%r{^ALLOWED_HOURS_1 = $}).
             with_content(%r{^ALLOWED_HOURS_7 = $})
         }
@@ -32,7 +32,7 @@ describe 'timekpr::user' do
           end
 
           it {
-            is_expected.to contain_file('/var/lib/timekpr/conf/timekpr.steve.conf').
+            is_expected.to contain_file('/var/lib/timekpr/config/timekpr.steve.conf').
               with_content(%r{^ALLOWED_HOURS_1 = 3\[0-45\]$}).
               with_content(%r{^ALLOWED_HOURS_2 = 3\[0-41\];21\[10-49\]$}).
               with_content(%r{^ALLOWED_HOURS_7 = $})
@@ -50,7 +50,7 @@ describe 'timekpr::user' do
           end
 
           it {
-            is_expected.to contain_file('/var/lib/timekpr/conf/timekpr.steve.conf').
+            is_expected.to contain_file('/var/lib/timekpr/config/timekpr.steve.conf').
               with_content(%r{^ALLOWED_HOURS_1 = 3\[0-45\];6\[0-41\]$}).
               with_content(%r{^ALLOWED_HOURS_2 = 3\[0-45\];6\[0-41\]$}).
               with_content(%r{^ALLOWED_HOURS_7 = 3\[0-45\];6\[0-41\]$})
@@ -76,7 +76,7 @@ describe 'timekpr::user' do
           end
 
           it {
-            is_expected.to contain_file('/var/lib/timekpr/conf/timekpr.steve.conf').
+            is_expected.to contain_file('/var/lib/timekpr/config/timekpr.steve.conf').
               with_content(%r{^ALLOWED_HOURS_1 = 3\[0-45\];6\[0-41\]$}).
               with_content(%r{^ALLOWED_HOURS_2 = 3\[0-51\];6\[0-41\];21\[10-49]$}).
               with_content(%r{^ALLOWED_HOURS_7 = 3\[0-45\];6\[0-41\]$})
