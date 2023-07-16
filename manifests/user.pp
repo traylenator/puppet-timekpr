@@ -39,7 +39,7 @@ define timekpr::user (
     $_result
   }.reduce | $_memo, $_kv | { $_memo + $_kv }
 
-  file { "/var/lib/timekpr/conf/timekpr.${user}.conf":
+  file { "/var/lib/timekpr/config/timekpr.${user}.conf":
     ensure  => file,
     owner   => root,
     group   => root,
